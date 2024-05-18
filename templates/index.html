@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        #heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px;
+<!--            border: 5px solid black;-->
+            text-align: center;
+            padding: 15px;
+        }
+        .mt-5 {
+<!--            border: 1px solid black;-->
+<!--            background-color: lightgray;-->
+<!--            padding: 20px;-->
+        }
+        .form-group {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .add {
+            background-color: #f2f2f2;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            margin: 15px;
+            border-radius: 5px;
+        }
+        .add h2, .container h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+        .student-details {
+            flex: 1;
+        }
+        .student-photo {
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+        .student-photo img {
+            max-width: 300px;
+            height: auto;
+        }
+        .btn-center {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-primary:hover {
+        background-color: green;
+        color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="heading">Student Information System</h1>
+    <div class="container">
+        <div class="add">
+            <h2 class="mt-5">Add Student</h2>
+            <form action="{{ url_for('add_student') }}" method="post">
+                <div class="form-group">
+                    <label for="student_id">Student ID</label>
+                    <input type="text" class="form-control" id="student_id" name="student_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="major">Major</label>
+                    <input type="text" class="form-control" id="major" name="major" required>
+                </div>
+                <div class="form-group">
+                    <label for="starting_year">Starting Year</label>
+                    <input type="number" class="form-control" id="starting_year" name="starting_year" required>
+                </div>
+                <div class="form-group">
+                    <label for="standing">Standing</label>
+                    <input type="text" class="form-control" id="standing" name="standing" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" class="form-control" id="year" name="year" min="1"6 required>
+                </div>
+                <div class="form-group">
+                    <label for="last_attendance_time">Last Attendance Time</label>
+                    <input type="datetime-local" class="form-control" id="last_attendance_time" name="last_attendance_time" required>
+                </div>
+                <div class="btn-center">
+                    <button type="submit" class="btn btn-primary">Add Student</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <div class="add">
+            <h2 class="mt-5">Search Student</h2>
+            <form action="{{ url_for('search') }}" method="post">
+                <div class="form-group">
+                    <label for="student_id_search">Student ID</label>
+                    <input type="text" class="form-control" id="student_id_search" name="student_id" required>
+                </div>
+                <div class="btn-center">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+
+            {% if student_info %}
+            <div class="mt-5 student-info">
+                <div class="student-details">
+                    <h3>Student Information</h3>
+                    <p><strong>ID:</strong> {{ student_info['id'] }}</p>
+                    <p><strong>Name:</strong> {{ student_info['name'] }}</p>
+                    <p><strong>Major:</strong> {{ student_info['major'] }}</p>
+                    <p><strong>Starting Year:</strong> {{ student_info['starting_year'] }}</p>
+                    <p><strong>Total Attendance:</strong> {{ student_info['total_attendance'] }}</p>
+                    <p><strong>Standing:</strong> {{ student_info['standing'] }}</p>
+                    <p><strong>Year:</strong> {{ student_info['year'] }}</p>
+                    <p><strong>Last Attendance Time:</strong> {{ student_info['last_attendance_time'] }}</p>
+                </div>
+                <div class="student-photo">
+                    <h4>Student Photo</h4>
+                    <img src="data:image/png;base64,{{ img_str }}" alt="Student Photo" class="img-thumbnail">
+                </div>
+            </div>
+            {% elif error %}
+            <div class="alert alert-danger mt-5">{{ error }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
