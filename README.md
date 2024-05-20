@@ -1,7 +1,7 @@
 # Face-Recognition-System
 The Student Face Recognition System is a comprehensive application designed to manage student records using facial recognition technology. 
 
-# intall dependencies 
+# intall requirements.txt
 # Image in folder Images should be of size 216x216 and in PNG form only.
 # Steps to Run the Student Face Recognition System
 
