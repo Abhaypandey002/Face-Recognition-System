@@ -11,14 +11,10 @@
             justify-content: center;
             align-items: center;
             margin: 15px;
-<!--            border: 5px solid black;-->
             text-align: center;
             padding: 15px;
         }
         .mt-5 {
-<!--            border: 1px solid black;-->
-<!--            background-color: lightgray;-->
-<!--            padding: 20px;-->
         }
         .form-group {
             border: 1px solid rgba(0, 0, 0, 0.3);
@@ -62,10 +58,9 @@
             margin-top: 20px;
         }
         .btn-primary:hover {
-        background-color: green;
-        color: black;
+            background-color: green;
+            color: black;
         }
-
     </style>
 </head>
 <body>
@@ -73,7 +68,7 @@
     <div class="container">
         <div class="add">
             <h2 class="mt-5">Add Student</h2>
-            <form action="{{ url_for('add_student') }}" method="post">
+            <form action="{{ url_for('add_student') }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="student_id">Student ID</label>
                     <input type="text" class="form-control" id="student_id" name="student_id" required>
@@ -96,11 +91,15 @@
                 </div>
                 <div class="form-group">
                     <label for="year">Year</label>
-                    <input type="number" class="form-control" id="year" name="year" min="1"6 required>
+                    <input type="number" class="form-control" id="year" name="year" min="1" required>
                 </div>
                 <div class="form-group">
                     <label for="last_attendance_time">Last Attendance Time</label>
                     <input type="datetime-local" class="form-control" id="last_attendance_time" name="last_attendance_time" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Photo (216x216, PNG)</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/png" required>
                 </div>
                 <div class="btn-center">
                     <button type="submit" class="btn btn-primary">Add Student</button>
@@ -146,5 +145,3 @@
     </div>
 </body>
 </html>
-
-
