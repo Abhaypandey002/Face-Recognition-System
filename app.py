@@ -11,8 +11,8 @@ app = Flask(__name__)
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL': "https://faceattendancerealtime-3ed7a-default-rtdb.firebaseio.com/",
-    'storageBucket': "faceattendancerealtime-3ed7a.appspot.com"
+    'databaseURL': "",
+    'storageBucket': ""
 })
 
 @app.route('/')
